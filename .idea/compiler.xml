@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="xunlian_gateway" />
+        <module name="xunlian_common" />
+        <module name="xunlian_backed" />
+        <module name="xunlian_client_sdk" />
+        <module name="xunlian_interface" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="xunlian_backed" target="1.8" />
+      <module name="xunlian_client_sdk" target="1.8" />
+      <module name="xunlian_common" target="1.8" />
+      <module name="xunlian_gateway" target="1.8" />
+      <module name="xunlian_interface" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="xunlian_backed" options="-parameters" />
+      <module name="xunlian_client_sdk" options="-parameters" />
+      <module name="xunlian_common" options="-parameters" />
+      <module name="xunlian_gateway" options="-parameters" />
+      <module name="xunlian_interface" options="-parameters" />
+    </option>
+  </component>
+</project>

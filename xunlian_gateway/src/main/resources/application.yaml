@@ -1,0 +1,27 @@
+server:
+  port: 8090
+spring:
+  cloud:
+    gateway:
+      routes:
+      - id: api_route
+        uri: http://localhost:8181
+        predicates:
+          - Path=/api/**
+dubbo:
+  application:
+    name: xunlian_gateway
+  protocol:
+    name: dubbo
+    port: -1
+  registry:
+    id: gateway
+    address: nacos://localhost:8848
+
+logging:
+  level:
+    edu:
+      hut:
+        bookshop:
+          dao: debug
+

@@ -1,0 +1,8 @@
+server:
+  port: 8181
+  servlet:
+    context-path: /api
+xunlian:
+  client:
+    access-key: wkf
+    secret-key: qwert
