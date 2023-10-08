@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/xunlian_backed/springboot-init.iml" filepath="$PROJECT_DIR$/xunlian_backed/springboot-init.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/xualian_project.iml" filepath="$PROJECT_DIR$/.idea/xualian_project.iml" />
-      <module fileurl="file://$PROJECT_DIR$/xunlian-backed/xunlian_backed.iml" filepath="$PROJECT_DIR$/xunlian-backed/xunlian_backed.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xunlian_backed/xunlian_backed.iml" filepath="$PROJECT_DIR$/xunlian_backed/xunlian_backed.iml" />
       <module fileurl="file://$PROJECT_DIR$/xunlian_client_sdk/xunlian_client_sdk.iml" filepath="$PROJECT_DIR$/xunlian_client_sdk/xunlian_client_sdk.iml" />
       <module fileurl="file://$PROJECT_DIR$/xunlian_common/xunlian_common.iml" filepath="$PROJECT_DIR$/xunlian_common/xunlian_common.iml" />
       <module fileurl="file://$PROJECT_DIR$/xunlian_gateway/xunlian_gateway.iml" filepath="$PROJECT_DIR$/xunlian_gateway/xunlian_gateway.iml" />

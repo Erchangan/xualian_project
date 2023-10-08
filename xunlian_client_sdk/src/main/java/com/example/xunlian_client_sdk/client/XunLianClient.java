@@ -6,9 +6,11 @@ import cn.hutool.http.HttpRequest;
 import cn.hutool.http.HttpResponse;
 import cn.hutool.http.HttpUtil;
 import cn.hutool.json.JSONUtil;
+import com.example.xunlian_client_sdk.model.CurrencyRequest;
 import com.example.xunlian_client_sdk.model.User;
 import com.example.xunlian_client_sdk.utils.SignUtils;
 
+import java.util.Currency;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -51,5 +53,14 @@ public class XunLianClient {
         headers.put("sign", SignUtils.genSign(body, secretKey));
         return headers;
     }
-
+    public String execute(String params, CurrencyRequest currencyRequest){
+        String jsonParam = JSONUtil.toJsonStr(params);
+        String url = currencyRequest.getUrl();
+        HttpResponse httpResponse = HttpRequest.post(GATEWAY_HOST + url)
+                .addHeaders(getHeaders(jsonParam))
+                .body(jsonParam)
+                .execute();
+        String result = httpResponse.body();
+        return result;
+    }
 }

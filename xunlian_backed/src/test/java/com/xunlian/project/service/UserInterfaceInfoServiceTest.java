@@ -12,6 +12,5 @@ public class UserInterfaceInfoServiceTest {
     @Test
     public void invokeCountTest(){
         userInterfaceInfoService.invokeCount(1,2);
-
     }
 }

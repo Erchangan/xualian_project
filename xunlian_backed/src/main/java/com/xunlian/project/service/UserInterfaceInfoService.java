@@ -1,7 +1,7 @@
 package com.xunlian.project.service;
 
-import com.xunlian.project.model.entity.UserInterfaceInfo;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.xunlian.common.model.UserInterfaceInfo;
 
 /**
  * @author lenovo
@@ -15,9 +15,13 @@ public interface UserInterfaceInfoService extends IService<UserInterfaceInfo> {
      * @param add
      */
     void validUserInterfaceInfo(UserInterfaceInfo userInterfaceInfo, boolean add);
+
     /**
      * 更新接口调用次数
+     * @param userId
+     * @param interfaceInfoId
+     * @return
      */
-    void invokeCount(long userId,long interfaceInfoId);
+    boolean invokeCount(long userId,long interfaceInfoId);
 
 }

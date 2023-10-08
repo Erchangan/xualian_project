@@ -1,4 +1,4 @@
-package com.example.xunlian_common;
+package com.xunlian.common;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

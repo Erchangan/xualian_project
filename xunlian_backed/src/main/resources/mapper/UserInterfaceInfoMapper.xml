@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.xunlian.project.mapper.UserInterfaceiInfoMapper">
+<mapper namespace="com.xunlian.project.mapper.UserInterfaceInfoMapper">
 
-    <resultMap id="BaseResultMap" type="com.xunlian.project.model.entity.UserInterfaceInfo">
+    <resultMap id="BaseResultMap" type="com.xunlian.common.model.UserInterfaceInfo">
             <id property="id" column="id" jdbcType="INTEGER"/>
             <result property="userId" column="userId" jdbcType="INTEGER"/>
             <result property="interfaceInfoId" column="interfaceInfoId" jdbcType="BIGINT"/>

@@ -1,7 +1,7 @@
 package com.xunlian.project.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.xunlian.project.model.entity.InterfaceInfo;
+import com.xunlian.common.model.InterfaceInfo;
 
 /**
 * @author qianhe

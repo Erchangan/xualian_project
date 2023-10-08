@@ -4,9 +4,10 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.xunlian.project.exception.BusinessException;
-import com.xunlian.project.mapper.UserInterfaceiInfoMapper;
-import com.xunlian.project.model.entity.UserInterfaceInfo;
+
 import com.xunlian.project.common.ErrorCode;
+import com.xunlian.project.mapper.UserInterfaceInfoMapper;
+import com.xunlian.common.model.UserInterfaceInfo;
 import com.xunlian.project.service.UserInterfaceInfoService;
 import org.springframework.stereotype.Service;
 
@@ -18,10 +19,9 @@ import javax.annotation.Resource;
  * @createDate 2023-09-30 15:09:01
  */
 @Service
-public class UserInterfaceInfoServiceImpl extends ServiceImpl<UserInterfaceiInfoMapper, UserInterfaceInfo>
-        implements UserInterfaceInfoService {
+public class UserInterfaceInfoServiceImpl extends ServiceImpl<UserInterfaceInfoMapper,UserInterfaceInfo> implements UserInterfaceInfoService {
     @Resource
-    UserInterfaceiInfoMapper userInterfaceiInfoMapper;
+    private UserInterfaceInfoMapper userInterfaceInfoMapper;
     @Override
     public void validUserInterfaceInfo(UserInterfaceInfo userInterfaceInfo, boolean add) {
         if (userInterfaceInfo == null) {
@@ -45,21 +45,22 @@ public class UserInterfaceInfoServiceImpl extends ServiceImpl<UserInterfaceiInfo
      * @param interfaceInfoId
      */
     @Override
-    public void invokeCount(long userId, long interfaceInfoId) {
+    public boolean invokeCount(long userId, long interfaceInfoId) {
         if (userId <= 0&&interfaceInfoId<=0){
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
         LambdaQueryWrapper<UserInterfaceInfo> lambdaQueryWrapper=new LambdaQueryWrapper<>();
         lambdaQueryWrapper.eq(UserInterfaceInfo::getInterfaceInfoId, interfaceInfoId)
                 .eq(UserInterfaceInfo::getUserId, userId);
-        UserInterfaceInfo userInterfaceInfo = userInterfaceiInfoMapper.selectOne(lambdaQueryWrapper);
+        UserInterfaceInfo userInterfaceInfo = userInterfaceInfoMapper.selectOne(lambdaQueryWrapper);
         LambdaUpdateWrapper<UserInterfaceInfo> lambdaUpdateWrapper=new LambdaUpdateWrapper<>();
         lambdaUpdateWrapper.eq(UserInterfaceInfo::getInterfaceInfoId,interfaceInfoId)
                 .eq(UserInterfaceInfo::getUserId,userId)
                 .gt(UserInterfaceInfo::getLeftNumber,0)
                 .set(UserInterfaceInfo::getTotalNumber,userInterfaceInfo.getTotalNumber()+1)
                 .set(UserInterfaceInfo::getLeftNumber,userInterfaceInfo.getLeftNumber()-1);
-        userInterfaceiInfoMapper.update(userInterfaceInfo, lambdaUpdateWrapper);
+        userInterfaceInfoMapper.update(userInterfaceInfo, lambdaUpdateWrapper);
+        return true;
     }
 }
 

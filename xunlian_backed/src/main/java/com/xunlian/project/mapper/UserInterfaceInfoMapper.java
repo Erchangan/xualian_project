@@ -1,7 +1,7 @@
 package com.xunlian.project.mapper;
 
-import com.xunlian.project.model.entity.UserInterfaceInfo;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.xunlian.common.model.UserInterfaceInfo;
 
 /**
 * @author lenovo
@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 * @createDate 2023-09-30 15:09:01
 * @Entity com.yupi.project.model.entity.UserInterfaceiInfo
 */
-public interface UserInterfaceiInfoMapper extends BaseMapper<UserInterfaceInfo> {
+public interface UserInterfaceInfoMapper extends BaseMapper<UserInterfaceInfo> {
 
 }
 

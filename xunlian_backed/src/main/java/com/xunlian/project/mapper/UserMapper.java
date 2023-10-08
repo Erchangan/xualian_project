@@ -1,7 +1,7 @@
 package com.xunlian.project.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.xunlian.project.model.entity.User;
+import com.xunlian.common.model.User;
 
 /**
  * @Entity com.yupi.project.model.domain.User

@@ -2,6 +2,8 @@ package com.xunlian.project.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.xunlian.common.model.User;
+import com.xunlian.common.model.UserInterfaceInfo;
 import com.xunlian.project.model.dto.userinterfaceinfo.UserInterfaceInfoAddRequest;
 import com.xunlian.project.model.dto.userinterfaceinfo.UserInterfaceInfoUpdateRequest;
 import com.xunlian.project.annotation.AuthCheck;
@@ -13,8 +15,6 @@ import com.xunlian.project.constant.CommonConstant;
 import com.xunlian.project.constant.UserConstant;
 import com.xunlian.project.exception.BusinessException;
 import com.xunlian.project.model.dto.userinterfaceinfo.UserInterfaceInfoQueryRequest;
-import com.xunlian.project.model.entity.User;
-import com.xunlian.project.model.entity.UserInterfaceInfo;
 import com.xunlian.project.service.UserInterfaceInfoService;
 import com.xunlian.project.service.UserService;
 import org.apache.commons.lang3.StringUtils;

@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.xunlian.project.annotation.AuthCheck;
 import com.xunlian.project.common.ErrorCode;
 import com.xunlian.project.exception.BusinessException;
-import com.xunlian.project.model.entity.User;
+import com.xunlian.common.model.User;
 import com.xunlian.project.service.UserService;
 import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;

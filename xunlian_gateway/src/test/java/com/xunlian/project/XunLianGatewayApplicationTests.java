@@ -1,7 +1,8 @@
 package com.xunlian.project;
 
 
-import com.xunlian.project.provider.DemoService;
+import com.xunlian.common.service.DemoService;
+import com.xunlian.common.service.InnerUserInterfaceInfoService;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,10 +13,16 @@ import org.springframework.boot.test.context.SpringBootTest;
 class XunLianGatewayApplicationTests {
     @DubboReference
     private DemoService demoService;
+    @DubboReference
+    private InnerUserInterfaceInfoService innerUserInterfaceInfoService;
     @Test
     void testDemo() {
-        String result = demoService.sayHello("zhangsan");
+        String result=demoService.sayHello("张三");
         System.out.println(result);
+    }
+    @Test
+    void testInvokeCount(){
+        innerUserInterfaceInfoService.invokeCount(1,2);
     }
 
 }

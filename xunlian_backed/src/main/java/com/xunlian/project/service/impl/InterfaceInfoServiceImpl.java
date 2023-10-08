@@ -3,9 +3,9 @@ package com.xunlian.project.service.impl;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.xunlian.project.common.ErrorCode;
 import com.xunlian.project.exception.BusinessException;
+import com.xunlian.common.model.InterfaceInfo;
 import com.xunlian.project.service.InterfaceInfoService;
 import com.xunlian.project.mapper.InterfaceInfoMapper;
-import com.xunlian.project.model.entity.InterfaceInfo;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 

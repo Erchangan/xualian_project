@@ -11,6 +11,8 @@ spring:
 dubbo:
   application:
     name: xunlian_gateway
+    qos-port: 22201
+    qos-enable: true
   protocol:
     name: dubbo
     port: -1
