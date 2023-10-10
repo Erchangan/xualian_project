@@ -4,12 +4,11 @@ import cn.hutool.json.JSONUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.xunlian_client_sdk.client.XunLianClient;
-import com.example.xunlian_client_sdk.model.CurrencyRequest;
+import com.xunlian.common.model.InterfaceInfo;
+import com.xunlian.common.model.User;
 import com.xunlian.project.annotation.AuthCheck;
 import com.xunlian.project.common.*;
 import com.xunlian.project.exception.BusinessException;
-import com.xunlian.common.model.InterfaceInfo;
-import com.xunlian.common.model.User;
 import com.xunlian.project.model.dto.interfaceInfo.InterfaceInfoInvokeRequest;
 import com.xunlian.project.constant.CommonConstant;
 import com.xunlian.project.model.dto.interfaceInfo.InterfaceInfoAddRequest;
@@ -25,7 +24,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.net.URI;
 import java.util.List;
 
 /**
@@ -256,9 +254,6 @@ public class InterfaceInfoController {
         String requestParams = interfaceInfoInvoke.getUserRequestParams();
 
         InterfaceInfo interfaceInfo = interfaceInfoService.getById(id);
-        String currUrl = interfaceInfo.getUrl();
-        URI path = URI.create(currUrl);
-        String url = path.getPath().toString();
         if (interfaceInfo == null) {
             throw new BusinessException(ErrorCode.NOT_FOUND_ERROR, "接口不存在");
         }
@@ -268,14 +263,11 @@ public class InterfaceInfoController {
 
         //调用接口
         User loginUser = userService.getLoginUser(request);
-        String method = request.getMethod();
         String accessKey = loginUser.getAccessKey();
         String secretKey = loginUser.getSecretKey();
         XunLianClient xunLianClient = new XunLianClient(accessKey, secretKey);
-        CurrencyRequest currencyRequest = new CurrencyRequest(method, url);
-        String result = xunLianClient.execute(requestParams, currencyRequest);
-        //com.example.xunlian_client_sdk.model.User user = JSONUtil.toBean(requestParams, com.example.xunlian_client_sdk.model.User.class);
-        //String postName = xunLianClient.getUser(user);
+        com.example.xunlian_client_sdk.model.User user = JSONUtil.toBean(requestParams, com.example.xunlian_client_sdk.model.User.class);
+        String result = xunLianClient.getUser(user);
         return ResultUtils.success(result);
     }
 

@@ -22,7 +22,7 @@ class XunLianGatewayApplicationTests {
     }
     @Test
     void testInvokeCount(){
-        innerUserInterfaceInfoService.invokeCount(1,2);
+        innerUserInterfaceInfoService.invokeCount(3,2);
     }
 
 }

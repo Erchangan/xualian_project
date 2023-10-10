@@ -53,6 +53,9 @@ public class UserInterfaceInfoServiceImpl extends ServiceImpl<UserInterfaceInfoM
         lambdaQueryWrapper.eq(UserInterfaceInfo::getInterfaceInfoId, interfaceInfoId)
                 .eq(UserInterfaceInfo::getUserId, userId);
         UserInterfaceInfo userInterfaceInfo = userInterfaceInfoMapper.selectOne(lambdaQueryWrapper);
+        if(userInterfaceInfo==null){
+            throw new BusinessException(ErrorCode.NOT_FOUND_ERROR);
+        }
         LambdaUpdateWrapper<UserInterfaceInfo> lambdaUpdateWrapper=new LambdaUpdateWrapper<>();
         lambdaUpdateWrapper.eq(UserInterfaceInfo::getInterfaceInfoId,interfaceInfoId)
                 .eq(UserInterfaceInfo::getUserId,userId)

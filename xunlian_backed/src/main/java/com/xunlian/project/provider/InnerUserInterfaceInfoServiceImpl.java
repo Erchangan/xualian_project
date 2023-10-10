@@ -16,8 +16,8 @@ public class InnerUserInterfaceInfoServiceImpl implements InnerUserInterfaceInfo
     @Autowired
     private UserInterfaceInfoMapper userInterfaceInfoMapper;
     @Override
-    public boolean invokeCount(long userId, long interfaceId) {
-        return userInterfaceInfoService.invokeCount(userId,interfaceId);
+    public boolean invokeCount(long userId, long interfaceInfoId) {
+        return userInterfaceInfoService.invokeCount(userId,interfaceInfoId);
     }
     @Override
     public int getLeftCount(long userId, long interfaceInfoId) {
