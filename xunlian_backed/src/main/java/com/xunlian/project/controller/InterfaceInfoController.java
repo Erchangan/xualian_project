@@ -4,6 +4,7 @@ import cn.hutool.json.JSONUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.xunlian_client_sdk.client.XunLianClient;
+import com.google.gson.Gson;
 import com.xunlian.common.model.InterfaceInfo;
 import com.xunlian.common.model.User;
 import com.xunlian.project.annotation.AuthCheck;
@@ -24,6 +25,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.lang.reflect.GenericArrayType;
+import java.lang.reflect.Method;
 import java.util.List;
 
 /**
@@ -211,12 +214,6 @@ public class InterfaceInfoController {
         if (interfaceInfo == null) {
             throw new BusinessException(ErrorCode.NOT_FOUND_ERROR, "接口校验失败");
         }
-        //查询接口是否可用
-        com.example.xunlian_client_sdk.model.User user = new com.example.xunlian_client_sdk.model.User();
-        String result = xunLianClient.getUser(user);
-        if (result == null) {
-            throw new BusinessException(ErrorCode.SYSTEM_ERROR, "接口不可用");
-        }
         InterfaceInfo interfaceInfoByUpDate = new InterfaceInfo();
         interfaceInfoByUpDate.setId(id);
         interfaceInfoByUpDate.setStatus(InterfaceInfoStatusEnum.ONLINE.getValue());
@@ -266,9 +263,32 @@ public class InterfaceInfoController {
         String accessKey = loginUser.getAccessKey();
         String secretKey = loginUser.getSecretKey();
         XunLianClient xunLianClient = new XunLianClient(accessKey, secretKey);
-        com.example.xunlian_client_sdk.model.User user = JSONUtil.toBean(requestParams, com.example.xunlian_client_sdk.model.User.class);
-        String result = xunLianClient.getUser(user);
-        return ResultUtils.success(result);
+        try {
+            //获取接口名称
+            String interFaceName = interfaceInfo.getName();
+            Class<?> xunLianClientClass = XunLianClient.class;
+            Method[] methods = xunLianClientClass.getDeclaredMethods();
+            // 遍历方法，查找与 interFaceName 相同的方法
+            for (Method method : methods) {
+                if (method.getName().equals(interFaceName)) {
+                    Class<?>[] parameterTypes = method.getParameterTypes();
+                    //如果不存在参数直接调用
+                    if (parameterTypes.length == 0) {
+                        Object result = method.invoke(xunLianClient);
+                        return ResultUtils.success(result);
+                    }
+                    Gson gson=new Gson();
+                    Object parameter = gson.fromJson(requestParams, parameterTypes[0]);
+                    //存在参数
+                    Object result = method.invoke(xunLianClient, parameter);
+                    return ResultUtils.success(result);
+                }
+            }
+        }
+        catch (Exception e) {
+            return ResultUtils.error(ErrorCode.SYSTEM_ERROR, "接口调用异常");
+        }
+        return ResultUtils.error(ErrorCode.SYSTEM_ERROR, "未知错误");
     }
 
 }

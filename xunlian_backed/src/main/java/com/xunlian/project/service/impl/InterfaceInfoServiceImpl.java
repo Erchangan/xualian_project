@@ -22,14 +22,14 @@ public class InterfaceInfoServiceImpl extends ServiceImpl<InterfaceInfoMapper, I
         if (interfaceInfo == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
-        String username = interfaceInfo.getUsername();
+        String url = interfaceInfo.getUrl();
         // 创建时，所有参数必须非空
         if (add) {
-            if (StringUtils.isAnyBlank(username)) {
+            if (StringUtils.isBlank(url)) {
                 throw new BusinessException(ErrorCode.PARAMS_ERROR);
             }
         }
-        if (StringUtils.isNotBlank(username) && username.length() >50) {
+        if (StringUtils.isNotBlank(url) && url.length() >50) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR, "名称过长");
         }
     }

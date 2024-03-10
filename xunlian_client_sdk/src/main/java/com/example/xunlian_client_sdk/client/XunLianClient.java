@@ -32,11 +32,19 @@ public class XunLianClient {
         return result;
     }
 
-    public String getUser(User user) {
+    public String postName(User user) {
         String jsonUser = JSONUtil.toJsonStr(user);
         HttpResponse httpResponse = HttpRequest.post(GATEWAY_HOST + "/api/name/postName")
                 .addHeaders(getHeaders(jsonUser))
                 .body(jsonUser)
+                .execute();
+        String result = httpResponse.body();
+        return result;
+    }
+
+    public String getRandomImage() {
+        HttpResponse httpResponse = HttpRequest.post(GATEWAY_HOST + "/api/name/randomImages")
+                .addHeaders(getHeaders("{}"))
                 .execute();
         String result = httpResponse.body();
         return result;

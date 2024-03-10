@@ -22,7 +22,7 @@ public class InterfaceInfo implements Serializable {
     /**
      * 用户名
      */
-    private String username;
+    private String name;
 
     /**
      * 用户名
