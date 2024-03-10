@@ -6,8 +6,8 @@ spring:
   # DataSource Config
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-#    url: jdbc:mysql://8.140.60.185:3306/my_db
-    url: jdbc:mysql://localhost:3306/my_db
+    url: jdbc:mysql://127.0.0.1:3306/my_db
+#    url: jdbc:mysql://localhost:3306/my_db
     username: root
     password: we.unique
   mvc:
@@ -30,7 +30,7 @@ server:
     session:
       cookie:
         max-age: 2592000
-#        domain: 8.140.60.185
+        domain: 127.0.0.1
 
 mybatis-plus:
   configuration:
@@ -49,10 +49,10 @@ dubbo:
     port: -1
   registry:
     id: backed
-#    address: nacos://8.140.60.185:8848
-    address: nacos://localhost:8848
-#  config-center:
-#    timeout: 40000
+    address: nacos://127.0.0.1:8848
+#    address: nacos://localhost:8848
+  config-center:
+    timeout: 40000
 
 xunlian:
   client:

@@ -43,7 +43,7 @@ public class CustomGlobalFilter implements GlobalFilter, Ordered {
     private InnerInterfaceInfoService innerInterfaceInfoService;
 
     private static final List<String> IP_WHITE_LIST = Arrays.asList("127.0.0.1");
-    public static final String REQUEST_HOME = "http://8.140.60.185:8181";
+    public static final String REQUEST_HOME = "http://127.0.0.1:8181";
 
     /**
      * 全局过滤

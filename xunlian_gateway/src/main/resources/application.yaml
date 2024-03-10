@@ -5,8 +5,8 @@ spring:
     gateway:
       routes:
       - id: api_route
-        uri: http://8.140.60.185:8181
-#        uri: http://localhost:8181
+#        uri: http://8.140.60.185:8181
+        uri: http://localhost:8181
         predicates:
           - Path=/api/**
 dubbo:
@@ -20,9 +20,15 @@ dubbo:
     port: -1
   registry:
     id: gateway
-    address: nacos://8.140.60.185:8848
-#    address: nacos://localhost:8848
+#    address: nacos://8.140.60.185:8848
+    address: nacos://localhost:8848
   config-center:
     timeout: 40000
 
+logging:
+  level:
+    org:
+      springframework:
+        cloud:
+          gateway: trace
 
