@@ -11,15 +11,15 @@ spring:
 dubbo:
   application:
     name: xunlian_gateway
-    qos-enable: true
-    qos-accept-foreign-ip: false
+#    qos-enable: true
+#    qos-accept-foreign-ip: false
   protocol:
     name: dubbo
     port: -1
   registry:
     id: gateway
     address: nacos://8.140.60.185:8848
-  config-center:
-    timeout: 40000
+#  config-center:
+#    timeout: 40000
 
 

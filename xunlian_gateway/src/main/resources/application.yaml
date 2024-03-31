@@ -25,4 +25,10 @@ dubbo:
   config-center:
     timeout: 40000
 
+logging:
+  level:
+    org:
+      springframework:
+        cloud:
+          gateway: trace
 

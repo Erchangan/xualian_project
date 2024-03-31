@@ -13,8 +13,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class XunLianClient {
-    //8.140.60.185
-    private final String GATEWAY_HOST = "http://localhost:8090";
+    //127.0.0.1
+    private final String GATEWAY_HOST = "http://127.0.0.1:8090";
 
     private String accessKey;
 
