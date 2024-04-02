@@ -58,6 +58,30 @@ const Index: React.FC = () => {
     }
     setInvokeLoading(false);
   };
+  //
+  const handleInvokeRes = () => {
+    let imagePath = '';
+    try {
+      if(invokeRes !=null && invokeRes != undefined){
+        const result = JSON.parse(invokeRes);
+        imagePath = result.imagePath || '';
+      }
+    } catch (error) {
+      console.error('解析返回结果时出错:', error);
+    }
+    // 检查是否存在图像路径
+    if (imagePath !== '') {
+      imagePath = `http://localhost:8181/api/${imagePath}`
+      return (
+        <a href={imagePath} target="_blank" rel="noopener noreferrer">
+          查看图片
+        </a>
+      );
+    } else {
+      // 否则直接显示返回结果
+      return invokeRes;
+    }
+  };
 
   return (
     <PageContainer title="查看接口文档">
@@ -93,7 +117,7 @@ const Index: React.FC = () => {
       </Card>
       <Divider />
       <Card title="返回结果" loading={invokeLoading}>
-        {invokeRes}
+        {handleInvokeRes()}
       </Card>
     </PageContainer>
   );

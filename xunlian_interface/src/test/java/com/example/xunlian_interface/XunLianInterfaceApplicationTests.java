@@ -10,11 +10,4 @@ import org.springframework.boot.test.context.SpringBootTest;
 class XunLianInterfaceApplicationTests {
     @Autowired
     XunLianClient xunLianClient;
-    @Test
-    void getNameByJson() {
-        String result = xunLianClient.getUser(new User("zhangSan"));
-        System.out.println(result);
-    }
-  
-
 }
