@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
@@ -15,15 +17,15 @@ import java.util.Random;
 @RequestMapping("/name")
 public class UserController {
 
-    private final String IMAGES_DIRECTORY_PATH = "F:/images/";
+    private final String IMAGES_DIRECTORY_PATH = "localhost:8181/api";
 
     @GetMapping("/getName")
-    public String getName(String name){
+    public String getName(String name) {
         return name;
     }
 
     @PostMapping("/postName")
-    public User postName(@RequestBody User user, HttpServletRequest httpServletRequest){
+    public User postName(@RequestBody User user, HttpServletRequest httpServletRequest) {
         return user;
     }
 
@@ -35,21 +37,26 @@ public class UserController {
         }
 
         Random random = new Random();
-        String randomImage = images.get(random.nextInt(images.size()));
-        String imagePath = IMAGES_DIRECTORY_PATH + randomImage;
-        return "{\"imagePath\": \"" + imagePath + "\"}";
+        String randomImageName = images.get(random.nextInt(images.size()));
+        return "{\"imagePath\": \"" + randomImageName + "\"}";
     }
 
     //获取本地图片列表
     private List<String> getLocalImages() {
         try {
-            File imagesDirectory = ResourceUtils.getFile("F:/images");
-            return Arrays.asList(imagesDirectory.list((dir, name) -> name.toLowerCase().matches(".*\\.(jpg|jpeg|png|gif)$")));
+            File imagesDirectory = ResourceUtils.getFile("classpath:static");
+            File[] files = imagesDirectory.listFiles((dir, name) -> name.toLowerCase().matches(".*\\.(jpg|jpeg|png|gif)$"));
+            if (files != null) {
+                List<String> imageNames = new ArrayList<>();
+                for (File file : files) {
+                    imageNames.add(file.getName());
+                }
+                return imageNames;
+            }
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
         }
+        return new ArrayList<>();
     }
-
 
 }
